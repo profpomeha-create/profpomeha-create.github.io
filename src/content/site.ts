@@ -14,7 +14,7 @@ export const site = {
   email: 'hello@chova.dev',
   telegram: 'https://t.me/chova',
   github: 'https://github.com/chova',
-  url: 'https://chova.dev',
+  url: 'https://aaa.is-a.dev',
   seo: {
     title: 'Андрей Чова — Full-Stack инженер и DevOps-архитектор',
     description:
