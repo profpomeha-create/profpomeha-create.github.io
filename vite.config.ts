@@ -22,6 +22,15 @@ export default defineConfig({
         enabled: true,
         crawlLinks: true,
       },
+      pages: [
+        {
+          path: '/yandex_f3d45a2d7896cfdd.html',
+          prerender: {
+            enabled: true,
+            outputPath: '/yandex_f3d45a2d7896cfdd.html',
+          },
+        },
+      ],
     }),
     viteReact(),
     nitro(),

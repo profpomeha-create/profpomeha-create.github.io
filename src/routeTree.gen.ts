@@ -10,33 +10,44 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as Yandex_f3d45a2d7896cfddDothtmlRouteImport } from './routes/yandex_f3d45a2d7896cfdd[.]html'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Yandex_f3d45a2d7896cfddDothtmlRoute =
+  Yandex_f3d45a2d7896cfddDothtmlRouteImport.update({
+    id: '/yandex_f3d45a2d7896cfdd.html',
+    path: '/yandex_f3d45a2d7896cfdd.html',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/yandex_f3d45a2d7896cfdd.html': typeof Yandex_f3d45a2d7896cfddDothtmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/yandex_f3d45a2d7896cfdd.html': typeof Yandex_f3d45a2d7896cfddDothtmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/yandex_f3d45a2d7896cfdd.html': typeof Yandex_f3d45a2d7896cfddDothtmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/yandex_f3d45a2d7896cfdd.html'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/yandex_f3d45a2d7896cfdd.html'
+  id: '__root__' | '/' | '/yandex_f3d45a2d7896cfdd.html'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  Yandex_f3d45a2d7896cfddDothtmlRoute: typeof Yandex_f3d45a2d7896cfddDothtmlRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +59,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/yandex_f3d45a2d7896cfdd.html': {
+      id: '/yandex_f3d45a2d7896cfdd.html'
+      path: '/yandex_f3d45a2d7896cfdd.html'
+      fullPath: '/yandex_f3d45a2d7896cfdd.html'
+      preLoaderRoute: typeof Yandex_f3d45a2d7896cfddDothtmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  Yandex_f3d45a2d7896cfddDothtmlRoute: Yandex_f3d45a2d7896cfddDothtmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

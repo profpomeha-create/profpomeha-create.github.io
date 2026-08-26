@@ -12,7 +12,7 @@ ASSETS = ROOT / "src" / "assets"
 PUBLIC = ROOT / "public"
 FONTS = ROOT / "scripts" / ".fonts"
 
-COVERS = ["case-shroudme", "case-fintech", "case-mail", "case-linux"]
+COVERS = ["case-shroudme", "case-fintech", "case-mail", "case-linux", "case-ai"]
 FONT_URLS = {
     "Archivo-VF.ttf": "https://github.com/google/fonts/raw/main/ofl/archivo/Archivo%5Bwdth%2Cwght%5D.ttf",
     "JetBrainsMono-VF.ttf": "https://github.com/google/fonts/raw/main/ofl/jetbrainsmono/JetBrainsMono%5Bwght%5D.ttf",

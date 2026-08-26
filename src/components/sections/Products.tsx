@@ -6,7 +6,7 @@ export function Products() {
   return (
     <section id="cases" className="cases-section" aria-labelledby="cases-title">
       <h2 id="cases-title" className="sr-only">
-        Кейсы: сеть, учёт, почта, серверы
+        Кейсы: сеть, учёт, почта, серверы, ИИ
       </h2>
       <div className="cases-pin">
         {products.map((item, i) => (

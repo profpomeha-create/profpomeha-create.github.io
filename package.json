@@ -6,7 +6,8 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "node .output/server/index.mjs"
+    "start": "node .output/server/index.mjs",
+    "index:yandex": "python scripts/yandex-index.py"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

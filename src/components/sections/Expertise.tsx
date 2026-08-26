@@ -11,7 +11,7 @@ export function Expertise() {
       </div>
 
       <p className="mt-10 max-w-[40ch] text-[length:var(--step-2)] font-semibold tracking-[-0.03em]">
-        Один подрядчик от кода до запуска: сервис, сеть, защита и сопровождение.
+        Один подрядчик от кода до запуска: сервис, сеть, защита, ИИ и сопровождение.
       </p>
 
       <div className="mt-[clamp(2.5rem,6vw,4.5rem)] grid grid-cols-1 gap-px bg-[var(--hairline)] md:grid-cols-2 lg:grid-cols-3">
