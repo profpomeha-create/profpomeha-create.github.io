@@ -1,23 +1,9 @@
-﻿import { Magnetic } from '~/components/Magnetic'
-import { scrollToSection } from '~/lib/lenis'
+﻿import { BrandLockup } from '~/components/Brand'
+import { Magnetic } from '~/components/Magnetic'
 import { kpis, site } from '~/content/site'
-
-export function SplitChars({ text }: { text: string }) {
-  return (
-    <>
-      {Array.from(text).map((ch, i) => (
-        <span key={`${ch}-${i}`} className="char inline-block will-change-transform">
-          {ch === ' ' ? '\u00a0' : ch}
-        </span>
-      ))}
-    </>
-  )
-}
+import { scrollToSection } from '~/lib/lenis'
 
 export function Hero() {
-  const [first, ...rest] = site.name.split(' ')
-  const surname = rest.join(' ')
-
   return (
     <section
       id="hero"
@@ -30,22 +16,40 @@ export function Hero() {
       </div>
 
       <div>
-        <h1 id="hero-title" className="hero-title plate plate-hero">
-          <span className="sr-only">{site.name}</span>
-          <span aria-hidden="true">
-            <span className="-mt-[0.18em] block overflow-hidden pt-[0.18em]">
-              <SplitChars text={first} />
-            </span>
-            <span className="-mt-[0.18em] block overflow-hidden pt-[0.18em] text-signal">
-              <SplitChars text={surname} />
-            </span>
-          </span>
+        <h1 id="hero-title" className="hero-title">
+          <span className="sr-only">{site.seo.title}</span>
+          <BrandLockup className="hero-logo" />
         </h1>
-        <p className="hero-line mt-6 max-w-[32ch] text-[length:var(--step-2)] font-semibold tracking-[-0.03em]">
+        <p className="hero-line mt-6 max-w-[28ch] text-[length:var(--step-2)] font-semibold tracking-[-0.03em]">
           {site.subtitle}
         </p>
         <p className="hero-line mt-4 max-w-[50ch] text-[length:var(--step-00)] leading-relaxed text-muted">
           {site.lead}
+        </p>
+        <div className="hero-line mt-7 flex flex-wrap items-center gap-3">
+          <Magnetic
+            as="button"
+            type="button"
+            label={site.ctaPrimary}
+            className="link-plate link-plate-fill mono text-[length:var(--step-00)]"
+            onClick={() => scrollToSection('#contact')}
+          >
+            <span className="led led-signal relative z-[1]" />
+            <span className="relative z-[1]">{site.ctaPrimary}</span>
+          </Magnetic>
+          <Magnetic
+            as="button"
+            type="button"
+            label={site.ctaSecondary}
+            className="link-plate mono text-[length:var(--step-00)]"
+            onClick={() => scrollToSection('#cases')}
+          >
+            <span className="led relative z-[1]" />
+            <span className="relative z-[1]">{site.ctaSecondary}</span>
+          </Magnetic>
+        </div>
+        <p className="hero-line mt-3 max-w-[46ch] text-[length:var(--step-000)] leading-relaxed text-faint">
+          {site.ctaHint}
         </p>
       </div>
 

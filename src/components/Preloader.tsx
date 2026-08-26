@@ -1,6 +1,7 @@
 ﻿import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { useRef } from 'react'
+import { BrandMark } from '~/components/Brand'
 import { bootLines, site } from '~/content/site'
 
 export function Preloader({
@@ -65,6 +66,7 @@ export function Preloader({
       className="fixed inset-0 z-[70] flex flex-col justify-between bg-[var(--void-deep)] px-[var(--gutter)] py-[clamp(1.5rem,4vw,3rem)]"
     >
       <div className="boot-fade flex items-center gap-3">
+        <BrandMark className="h-8 w-auto" />
         <span className="led led-signal led-blink" />
         <span className="tag">{site.name} · {site.kicker}</span>
       </div>

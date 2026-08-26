@@ -7,6 +7,7 @@ import { CustomCursor, ScrollProgress } from '~/components/Chrome'
 import { Preloader } from '~/components/Preloader'
 import { SceneLayer } from '~/components/SceneLayer'
 import { SectionNav } from '~/components/SectionNav'
+import { About } from '~/components/sections/About'
 import { Contact } from '~/components/sections/Contact'
 import { Expertise } from '~/components/sections/Expertise'
 import { Hero } from '~/components/sections/Hero'
@@ -66,7 +67,7 @@ export function Experience() {
       }
 
       mm.add('(prefers-reduced-motion: reduce)', () => {
-        gsap.set('.hero-title .char, .hero-line, .kpi-tile, .contact-title', {
+        gsap.set('.hero-logo, .hero-line, .kpi-tile, .contact-title, .about-card', {
           autoAlpha: 1,
           y: 0,
           filter: 'blur(0px)',
@@ -80,10 +81,10 @@ export function Experience() {
       })
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
-        gsap.from('.hero-title .char', {
-          yPercent: 108,
-          stagger: 0.028,
-          duration: 0.85,
+        gsap.from('.hero-logo', {
+          y: 28,
+          autoAlpha: 0,
+          duration: 0.9,
           ease: 'power3.out',
         })
         gsap.from('.hero-line', {
@@ -121,6 +122,15 @@ export function Experience() {
         )
         gsap.utils.toArray<HTMLElement>('.stack-led').forEach((led, i) => {
           stackTl.call(() => led.classList.add('led-on'), undefined, i === 0 ? '-=0.2' : '+=0.05')
+        })
+
+        gsap.from('.about-card', {
+          y: 28,
+          autoAlpha: 0,
+          stagger: 0.1,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: '#about', start: 'top 72%', once: true },
         })
 
         gsap.from('.expertise-card', {
@@ -255,6 +265,7 @@ export function Experience() {
       {!ready ? <Preloader reduced={reduced} onDone={() => setReady(true)} /> : null}
       <main className="relative z-[2]">
         <Hero />
+        <About />
         <Expertise />
         <Products />
         <Method />

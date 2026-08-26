@@ -112,27 +112,28 @@ def paint_og(fonts: dict[str, Path]) -> None:
         draw.line([(x0, y0), (x0 + dx * tick, y0)], fill=signal, width=2)
         draw.line([(x0, y0), (x0, y0 + dy * tick)], fill=signal, width=2)
 
-    display = load_font(fonts["Archivo-VF.ttf"], 108, [800, 118])
+    lockup = Image.open(ASSETS / "logo.webp").convert("RGBA")
+    lockup.thumbnail((360, 360), Image.Resampling.LANCZOS)
+    img.paste(lockup, (48, 86), lockup)
+
     display_sm = load_font(fonts["Archivo-VF.ttf"], 26, [700, 110])
     mono = load_font(fonts["JetBrainsMono-VF.ttf"], 18, [500])
     mono_sm = load_font(fonts["JetBrainsMono-VF.ttf"], 15, [500])
 
-    draw.text((64, 52), "АНДРЕЙ ЧОВА  ·  ИНФРА В ПРОДЕ", font=mono_sm, fill=muted)
+    draw.text((64, 52), "AAA LAB  ·  ИНФРА В ПРОДЕ", font=mono_sm, fill=muted)
     draw.rectangle([64, 86, 72, 94], fill=live)
 
-    draw.text((60, 128), "АНДРЕЙ", font=display, fill=fg)
-    draw.text((60, 236), "ЧОВА", font=display, fill=signal)
-    draw.text((64, 372), "FULL-STACK  ·  DEVOPS  ·  NETWORK", font=display_sm, fill=fg)
+    draw.text((64, 392), "FULL-STACK  ·  DEVOPS  ·  NETWORK", font=display_sm, fill=fg)
 
     specs = [("SHROUDME", "VPN"), ("FINTECH", "Учёт"), ("MAILCOW", "Edge")]
     x = 64
     for key, value in specs:
-        draw.line([(x, 430), (x + 210, 430)], fill=(255, 255, 255, 48), width=1)
-        draw.text((x, 444), key, font=mono_sm, fill=muted)
-        draw.text((x, 470), value, font=mono, fill=fg)
+        draw.line([(x, 440), (x + 210, 440)], fill=(255, 255, 255, 48), width=1)
+        draw.text((x, 454), key, font=mono_sm, fill=muted)
+        draw.text((x, 480), value, font=mono, fill=fg)
         x += 240
 
-    draw.text((64, 552), "chova.dev", font=mono, fill=signal)
+    draw.text((64, 552), "aaa.is-a.dev", font=mono, fill=signal)
 
     out = PUBLIC / "og.png"
     img.convert("RGB").save(out, "PNG", optimize=True)

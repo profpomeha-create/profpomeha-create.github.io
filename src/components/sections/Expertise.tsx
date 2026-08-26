@@ -4,14 +4,14 @@ export function Expertise() {
   return (
     <section id="expertise" className="chapter flex flex-col justify-center" aria-labelledby="expertise-title">
       <div className="bay-head">
-        <span className="tag tag-signal">01</span>
+        <span className="tag tag-signal">02</span>
         <h2 id="expertise-title" className="tag">
-          экспертиза
+          Что берём в работу
         </h2>
       </div>
 
       <p className="mt-10 max-w-[40ch] text-[length:var(--step-2)] font-semibold tracking-[-0.03em]">
-        Системная разработка, сеть и эксплуатация — один контур, не набор подрядов.
+        Один подрядчик от кода до запуска: сервис, сеть, защита и сопровождение.
       </p>
 
       <div className="mt-[clamp(2.5rem,6vw,4.5rem)] grid grid-cols-1 gap-px bg-[var(--hairline)] md:grid-cols-2 lg:grid-cols-3">

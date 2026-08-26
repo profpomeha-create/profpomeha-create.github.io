@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
+import { BrandMark } from '~/components/Brand'
 import { site } from '~/content/site'
 import { resetTabProgress, setTabProgress } from '~/lib/tabProgress'
 
@@ -65,7 +66,10 @@ export function ScrollProgress() {
         className="pointer-events-none fixed top-[clamp(1rem,2.4vw,1.8rem)] left-[var(--gutter)] z-50 hidden md:block"
         aria-hidden="true"
       >
-          <span className="tag">{site.name} · {site.kicker}</span>
+          <span className="flex items-center gap-2.5">
+            <BrandMark className="h-6 w-auto" />
+            <span className="tag">{site.name} · {site.kicker}</span>
+          </span>
       </div>
     </>
   )

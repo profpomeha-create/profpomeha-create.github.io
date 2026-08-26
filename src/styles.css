@@ -130,6 +130,12 @@ button {
   font-size: clamp(2.05rem, 6.4vw, 5.6rem);
 }
 
+.hero-logo {
+  display: block;
+  width: min(22rem, 78vw);
+  height: auto;
+}
+
 .plate-md {
   font-size: var(--step-4);
 }
@@ -378,6 +384,7 @@ button {
 
 .cursor-root.is-hot .cursor-box {
   opacity: 1;
+  background: color-mix(in oklch, var(--void-deep) 88%, transparent);
 }
 
 /* Crosshair arms that retract when the reticle opens */
@@ -414,6 +421,9 @@ button {
   left: 0;
   z-index: 3;
   translate: 18px 12px;
+  padding: 0.28rem 0.5rem;
+  border: 1px solid var(--signal);
+  background: var(--void-deep);
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.22em;
@@ -639,6 +649,45 @@ button {
   fill: none;
 }
 
+.contact-terminal-hit {
+  display: block;
+  padding: 0.4rem;
+  margin: -0.4rem;
+  border: 0;
+  background: none;
+  color: inherit;
+}
+
+.contact-terminal-hit:focus-visible {
+  outline: 1px solid var(--signal);
+  outline-offset: 6px;
+}
+
+.contact-spider {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 55;
+  overflow: visible;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.contact-spider path,
+.contact-spider ellipse,
+.contact-spider circle:not(.spider-eye) {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.contact-spider .spider-eye {
+  fill: var(--signal);
+  stroke: none;
+}
+
 .link-plate {
   position: relative;
   display: inline-flex;
@@ -677,6 +726,113 @@ button {
 .link-plate:hover .led {
   background: var(--void-deep);
   box-shadow: none;
+}
+
+.link-plate-fill {
+  background: var(--signal);
+  border-color: var(--signal);
+  color: var(--void-deep);
+}
+
+.link-plate-fill::before {
+  display: none;
+}
+
+.link-plate-fill:hover {
+  color: var(--void-deep);
+  filter: brightness(1.06);
+}
+
+.link-plate-fill .led {
+  background: var(--void-deep);
+  box-shadow: none;
+}
+
+/* ---------- Brief form ---------- */
+
+.brief-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .brief-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.brief-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.brief-input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.75rem 0.95rem;
+  border: 1px solid var(--hairline);
+  background: var(--void);
+  color: var(--fg);
+  font: inherit;
+  font-size: var(--step-00);
+  color-scheme: dark;
+  border-radius: 0;
+}
+
+.brief-input:focus {
+  border-color: var(--signal);
+  outline: none;
+}
+
+.brief-input[aria-invalid='true'] {
+  border-color: var(--signal);
+}
+
+.brief-area {
+  min-height: 7.5rem;
+  resize: vertical;
+}
+
+.brief-error {
+  font-family: var(--font-mono);
+  font-size: var(--step-000);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--signal);
+}
+
+.stack-notes summary {
+  list-style: none;
+}
+
+.stack-notes summary::-webkit-details-marker {
+  display: none;
+}
+
+.stack-module:nth-child(n + 2) .stack-drop {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .stack-module:nth-child(-n + 2) .stack-drop {
+    display: block;
+  }
+
+  .stack-module:nth-child(n + 3) .stack-drop {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stack-module:nth-child(-n + 3) .stack-drop {
+    display: block;
+  }
+
+  .stack-module:nth-child(n + 4) .stack-drop {
+    display: none;
+  }
 }
 
 /* ---------- Boot sequence ---------- */

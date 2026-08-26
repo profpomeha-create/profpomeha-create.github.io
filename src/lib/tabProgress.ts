@@ -166,7 +166,7 @@ export function resetTabProgress() {
   lastKey = ''
   document.title = site.seo.title
   if (icon && originalHref) {
-    icon.type = originalType || 'image/svg+xml'
+    icon.type = originalType || 'image/png'
     icon.href = originalHref
   }
 }
