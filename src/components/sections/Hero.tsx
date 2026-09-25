@@ -16,13 +16,15 @@ export function Hero() {
       </div>
 
       <div>
-        <h1 id="hero-title" className="hero-title">
-          <span className="sr-only">{site.seo.title}</span>
+        <div className="hero-title">
           <BrandLockup className="hero-logo" />
+        </div>
+        <h1
+          id="hero-title"
+          className="hero-line mt-6 max-w-[28ch] text-[length:var(--step-2)] font-semibold tracking-[-0.03em]"
+        >
+          {site.h1}
         </h1>
-        <p className="hero-line mt-6 max-w-[28ch] text-[length:var(--step-2)] font-semibold tracking-[-0.03em]">
-          {site.subtitle}
-        </p>
         <p className="hero-line mt-4 max-w-[50ch] text-[length:var(--step-00)] leading-relaxed text-muted">
           {site.lead}
         </p>

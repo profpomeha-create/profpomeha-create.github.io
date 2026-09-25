@@ -1,3 +1,6 @@
+import { Link } from '@tanstack/react-router'
+import { Magnetic } from '~/components/Magnetic'
+import { expertiseToService } from '~/content/catalog'
 import { expertise } from '~/content/site'
 
 export function Expertise() {
@@ -18,11 +21,23 @@ export function Expertise() {
         {expertise.map((item, i) => (
           <article
             key={item.id}
-            className="expertise-card method-card panel p-8"
+            className="expertise-card method-card panel flex h-full flex-col p-8"
           >
             <p className="tag tag-signal">{String(i + 1).padStart(2, '0')}</p>
             <h3 className="mt-8 text-[length:var(--step-2)] font-bold tracking-[-0.03em]">{item.title}</h3>
             <p className="mt-4 text-[length:var(--step-00)] leading-relaxed text-muted">{item.body}</p>
+            <div className="mt-auto pt-8">
+              <Magnetic
+                as={Link}
+                to="/uslugi/$slug"
+                params={{ slug: expertiseToService[item.id] ?? 'infrastruktura' }}
+                label="Открыть направление"
+                className="link-plate mono text-[length:var(--step-000)]"
+              >
+                <span className="led relative z-[1]" />
+                <span className="relative z-[1]">открыть направление</span>
+              </Magnetic>
+            </div>
           </article>
         ))}
       </div>

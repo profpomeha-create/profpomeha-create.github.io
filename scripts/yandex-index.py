@@ -12,7 +12,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
-SITEMAP = PUBLIC / "sitemap.xml"
 HOST = "aaa.is-a.dev"
 SITE = f"https://{HOST}"
 INDEXNOW_KEY = "7c9e2b4a1f8d0635e4a0c8b7d2f1956e"
@@ -20,12 +19,40 @@ INDEXNOW_FILE = PUBLIC / f"{INDEXNOW_KEY}.txt"
 
 NS = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
 CTX = ssl.create_default_context()
+FALLBACK = [
+    f"{SITE}/",
+    f"{SITE}/uslugi",
+    f"{SITE}/uslugi/infrastruktura",
+    f"{SITE}/uslugi/set",
+    f"{SITE}/uslugi/backend",
+    f"{SITE}/uslugi/pochta",
+    f"{SITE}/uslugi/ai",
+    f"{SITE}/keysy",
+    f"{SITE}/keysy/set",
+    f"{SITE}/keysy/uchet",
+    f"{SITE}/keysy/pochta",
+    f"{SITE}/keysy/server",
+    f"{SITE}/keysy/ai",
+]
 
 
 def sitemap_urls() -> list[str]:
-    tree = ET.parse(SITEMAP)
-    locs = [node.text.strip() for node in tree.findall(".//sm:loc", NS) if node.text]
-    return locs or [f"{SITE}/"]
+    sitemap_url = f"{SITE}/sitemap.xml"
+    try:
+        status, payload = request("GET", sitemap_url)
+    except Exception as err:
+        print(f"sitemap fetch   failed ({err})  using fallback list")
+        return FALLBACK
+    if status != 200 or not payload.strip():
+        print(f"sitemap fetch   {status}  using fallback list")
+        return FALLBACK
+    try:
+        root = ET.fromstring(payload)
+        locs = [node.text.strip() for node in root.findall(".//sm:loc", NS) if node.text]
+        return locs or FALLBACK
+    except ET.ParseError:
+        print("sitemap fetch   parse error  using fallback list")
+        return FALLBACK
 
 
 def request(method: str, url: str, body: bytes | None = None, content_type: str | None = None) -> tuple[int, str]:

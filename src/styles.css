@@ -847,6 +847,43 @@ button {
   background: var(--signal);
 }
 
+.chapter-fit {
+  position: relative;
+  padding: var(--bay) var(--gutter);
+}
+
+.page-hero {
+  padding-top: clamp(7.25rem, 16vw, 9.5rem);
+}
+
+.page-bar {
+  position: fixed;
+  z-index: 45;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  padding: clamp(0.85rem, 2vw, 1.35rem) var(--gutter);
+  padding-right: clamp(5.5rem, 12vw, 7.5rem);
+  background: linear-gradient(
+    180deg,
+    oklch(0.108 0.005 250 / 0.92) 0%,
+    oklch(0.108 0.005 250 / 0.55) 70%,
+    transparent 100%
+  );
+}
+
+.case-thumb {
+  width: 100%;
+  min-height: 14rem;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.2) brightness(0.34);
+}
+
 @media (min-width: 900px) {
   .station-rail {
     display: flex;
@@ -857,13 +894,13 @@ button {
     overflow: hidden;
   }
 
-  .case-panel {
+  .cases-pin .case-panel {
     position: absolute;
     inset: 0;
     min-height: 0;
   }
 
-  .case-panel + .case-panel {
+  .cases-pin .case-panel + .case-panel {
     opacity: 0;
   }
 }

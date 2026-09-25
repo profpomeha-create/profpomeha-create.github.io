@@ -1,3 +1,5 @@
+import { Link } from '@tanstack/react-router'
+import { Magnetic } from '~/components/Magnetic'
 import { products } from '~/content/site'
 
 export function Products() {
@@ -59,6 +61,16 @@ export function Products() {
                   <dd className="mono text-signal text-[length:var(--step-3)] leading-none">{item.effect}</dd>
                 </div>
               </dl>
+              <Magnetic
+                as={Link}
+                to="/keysy/$slug"
+                params={{ slug: item.slug }}
+                label="Разбор кейса"
+                className="link-plate mono mt-8 text-[length:var(--step-00)]"
+              >
+                <span className="led relative z-[1]" />
+                <span className="relative z-[1]">Разбор кейса</span>
+              </Magnetic>
             </div>
           </article>
         ))}

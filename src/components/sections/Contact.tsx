@@ -1,8 +1,11 @@
-﻿import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { Link } from '@tanstack/react-router'
 import gsap from 'gsap'
+import { BriefForm } from '~/components/BriefForm'
 import { Magnetic } from '~/components/Magnetic'
-import { briefNeeds, contactCopy, site } from '~/content/site'
+import { contactCopy, products, site } from '~/content/site'
+import { services } from '~/content/services'
 import { usePrefersReducedMotion } from '~/lib/motion'
 
 function TerminalBlock({ svgRef }: { svgRef: React.RefObject<SVGSVGElement | null> }) {
@@ -161,182 +164,6 @@ function scramblePath(start: { x: number; y: number }, vw: number, vh: number) {
   p2.y -= py * sign * 0.7
 
   return { p1, p2, exit }
-}
-
-type Brief = {
-  name: string
-  company: string
-  need: string
-  message: string
-  contact: string
-}
-
-const emptyBrief: Brief = { name: '', company: '', need: '', message: '', contact: '' }
-
-function validateBrief(data: Brief) {
-  const errors: Partial<Record<keyof Brief, string>> = {}
-  if (data.name.trim().length < 2) errors.name = 'Укажите имя'
-  if (!data.need) errors.need = 'Выберите направление'
-  if (data.message.trim().length < 12) errors.message = 'Коротко опишите задачу'
-  if (data.contact.trim().length < 4) errors.contact = 'Укажите почту, телефон или мессенджер'
-  return errors
-}
-
-function buildMailto(data: Brief) {
-  const needLabel = briefNeeds.find((item) => item.id === data.need)?.label ?? data.need
-  const subject = encodeURIComponent(`Запрос: ${needLabel} — ${data.company || data.name}`)
-  const body = encodeURIComponent(
-    [
-      `Имя: ${data.name}`,
-      `Компания: ${data.company || '—'}`,
-      `Что нужно: ${needLabel}`,
-      `Контакт для ответа: ${data.contact}`,
-      '',
-      'Задача:',
-      data.message,
-    ].join('\n'),
-  )
-  return `mailto:${site.email}?subject=${subject}&body=${body}`
-}
-
-function BriefForm() {
-  const [data, setData] = useState<Brief>(emptyBrief)
-  const [errors, setErrors] = useState<Partial<Record<keyof Brief, string>>>({})
-  const [sent, setSent] = useState(false)
-  const [href, setHref] = useState('')
-
-  const set =
-    (key: keyof Brief) =>
-    (event: { target: { value: string } }) => {
-      setData((prev) => ({ ...prev, [key]: event.target.value }))
-      if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }))
-    }
-
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const next = validateBrief(data)
-    setErrors(next)
-    if (Object.keys(next).length) return
-    const mail = buildMailto(data)
-    setHref(mail)
-    setSent(true)
-    window.location.href = mail
-  }
-
-  if (sent) {
-    return (
-      <div className="brief-done panel p-8" role="status">
-        <p className="tag tag-signal">заявка собрана</p>
-        <p className="mt-5 max-w-[42ch] text-[length:var(--step-00)] leading-relaxed text-muted">
-          Откроется почтовый клиент с заполненным письмом. Если этого не произошло, отправьте его вручную.
-        </p>
-        <Magnetic as="a" href={href} label="Открыть письмо" className="link-plate link-plate-fill mono mt-6 text-[length:var(--step-00)]">
-          <span className="led led-signal relative z-[1]" />
-          <span className="relative z-[1]">Открыть письмо</span>
-        </Magnetic>
-      </div>
-    )
-  }
-
-  return (
-    <form id="brief" className="brief-form" onSubmit={onSubmit} noValidate>
-      <div className="brief-grid">
-        <label className="brief-field">
-          <span className="tag">Имя</span>
-          <input
-            className="brief-input"
-            name="name"
-            autoComplete="name"
-            value={data.name}
-            onChange={set('name')}
-            aria-invalid={Boolean(errors.name)}
-            aria-describedby={errors.name ? 'brief-name-error' : undefined}
-          />
-          {errors.name ? (
-            <span id="brief-name-error" className="brief-error">
-              {errors.name}
-            </span>
-          ) : null}
-        </label>
-        <label className="brief-field">
-          <span className="tag">Компания</span>
-          <input
-            className="brief-input"
-            name="company"
-            autoComplete="organization"
-            value={data.company}
-            onChange={set('company')}
-          />
-        </label>
-        <label className="brief-field">
-          <span className="tag">Что нужно</span>
-          <select
-            className="brief-input"
-            name="need"
-            value={data.need}
-            onChange={set('need')}
-            aria-invalid={Boolean(errors.need)}
-            aria-describedby={errors.need ? 'brief-need-error' : undefined}
-          >
-            <option value="">Выберите направление</option>
-            {briefNeeds.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.label}
-              </option>
-            ))}
-          </select>
-          {errors.need ? (
-            <span id="brief-need-error" className="brief-error">
-              {errors.need}
-            </span>
-          ) : null}
-        </label>
-        <label className="brief-field">
-          <span className="tag">Контакт для ответа</span>
-          <input
-            className="brief-input"
-            name="reply"
-            autoComplete="email"
-            value={data.contact}
-            onChange={set('contact')}
-            aria-invalid={Boolean(errors.contact)}
-            aria-describedby={errors.contact ? 'brief-contact-error' : undefined}
-          />
-          {errors.contact ? (
-            <span id="brief-contact-error" className="brief-error">
-              {errors.contact}
-            </span>
-          ) : null}
-        </label>
-      </div>
-      <label className="brief-field mt-4">
-        <span className="tag">Короткое описание задачи</span>
-        <textarea
-          className="brief-input brief-area"
-          name="message"
-          rows={4}
-          value={data.message}
-          onChange={set('message')}
-          aria-invalid={Boolean(errors.message)}
-          aria-describedby={errors.message ? 'brief-message-error' : undefined}
-        />
-        {errors.message ? (
-          <span id="brief-message-error" className="brief-error">
-            {errors.message}
-          </span>
-        ) : null}
-      </label>
-      <Magnetic
-        as="button"
-        type="submit"
-        label={contactCopy.submit}
-        className="link-plate link-plate-fill mono mt-6 text-[length:var(--step-00)]"
-      >
-        <span className="led led-signal relative z-[1]" />
-        <span className="relative z-[1]">{contactCopy.submit}</span>
-      </Magnetic>
-    </form>
-  )
 }
 
 export function Contact() {
@@ -521,20 +348,60 @@ export function Contact() {
         </Magnetic>
       </nav>
 
-      <p className="mt-10 flex flex-wrap items-center gap-3">
-        <span className="tag">при поддержке</span>
-        <Magnetic
-          as="a"
-          href={site.getsaldo}
-          rel="noreferrer"
-          target="_blank"
-          label="GetSaldo"
-          className="link-plate mono text-[length:var(--step-00)]"
-        >
-          <span className="led led-signal relative z-[1]" />
-          <span className="relative z-[1]">GetSaldo</span>
-        </Magnetic>
-      </p>
+      <div className="mt-12 border-t border-[var(--hairline)] pt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div>
+          <p className="tag tag-signal mb-3">Направления</p>
+          <ul className="flex flex-col gap-2">
+            {services.map((svc) => (
+              <li key={svc.slug}>
+                <Link
+                  to="/uslugi/$slug"
+                  params={{ slug: svc.slug }}
+                  className="text-[length:var(--step-000)] text-muted hover:text-signal transition-colors"
+                >
+                  {svc.name} · {svc.h1}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="tag tag-signal mb-3">Кейсы</p>
+          <ul className="flex flex-col gap-2">
+            {products.map((p) => (
+              <li key={p.slug}>
+                <Link
+                  to="/keysy/$slug"
+                  params={{ slug: p.slug }}
+                  className="text-[length:var(--step-000)] text-muted hover:text-signal transition-colors"
+                >
+                  {p.name} — {p.effect}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="tag tag-signal mb-3">Студия</p>
+          <p className="text-[length:var(--step-000)] text-muted leading-relaxed">
+            {site.name} — {site.seo.description}
+          </p>
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <span className="tag">партнёр</span>
+            <Magnetic
+              as="a"
+              href={site.getsaldo}
+              rel="noreferrer"
+              target="_blank"
+              label="GetSaldo"
+              className="link-plate mono text-[length:var(--step-000)]"
+            >
+              <span className="led led-signal relative z-[1]" />
+              <span className="relative z-[1]">GetSaldo</span>
+            </Magnetic>
+          </div>
+        </div>
+      </div>
 
       {mounted
         ? createPortal(<SpiderMark svgRef={spider} />, document.body)

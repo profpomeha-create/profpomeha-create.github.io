@@ -6,6 +6,7 @@ import {
   createRootRoute,
 } from '@tanstack/react-router'
 import appCss from '~/styles.css?url'
+import { NotFoundPage } from '~/components/PageShell'
 import { site } from '~/content/site'
 
 export const Route = createRootRoute({
@@ -27,9 +28,7 @@ export const Route = createRootRoute({
       { rel: 'apple-touch-icon', href: '/favicon.png' },
     ],
   }),
-  notFoundComponent: () => (
-    <p className="p-8 text-muted">Страница не найдена.</p>
-  ),
+  notFoundComponent: NotFoundPage,
   component: RootComponent,
 })
 

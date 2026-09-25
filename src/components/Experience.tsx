@@ -83,13 +83,11 @@ export function Experience() {
       mm.add('(prefers-reduced-motion: no-preference)', () => {
         gsap.from('.hero-logo', {
           y: 28,
-          autoAlpha: 0,
           duration: 0.9,
           ease: 'power3.out',
         })
         gsap.from('.hero-line', {
           y: 20,
-          autoAlpha: 0,
           stagger: 0.08,
           delay: 0.3,
           duration: 0.6,

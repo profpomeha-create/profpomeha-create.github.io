@@ -10,7 +10,7 @@ function readProgress() {
 }
 
 /** Top hairline plus a numeric readout — a gauge, not a decorative bar. */
-export function ScrollProgress() {
+export function ScrollProgress({ brand = true }: { brand?: boolean }) {
   const bar = useRef<HTMLDivElement>(null)
   const readout = useRef<HTMLSpanElement>(null)
 
@@ -62,15 +62,17 @@ export function ScrollProgress() {
           000%
         </span>
       </div>
-      <div
-        className="pointer-events-none fixed top-[clamp(1rem,2.4vw,1.8rem)] left-[var(--gutter)] z-50 hidden md:block"
-        aria-hidden="true"
-      >
+      {brand ? (
+        <div
+          className="pointer-events-none fixed top-[clamp(1rem,2.4vw,1.8rem)] left-[var(--gutter)] z-50 hidden md:block"
+          aria-hidden="true"
+        >
           <span className="flex items-center gap-2.5">
             <BrandMark className="h-6 w-auto" />
             <span className="tag">{site.name} · {site.kicker}</span>
           </span>
-      </div>
+        </div>
+      ) : null}
     </>
   )
 }

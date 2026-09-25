@@ -10,11 +10,41 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SplatRouteImport } from './routes/$'
+import { Route as R404RouteImport } from './routes/404'
+import { Route as Googled4275817b7b8a702DothtmlRouteImport } from './routes/googled4275817b7b8a702[.]html'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as Yandex_f3d45a2d7896cfddDothtmlRouteImport } from './routes/yandex_f3d45a2d7896cfdd[.]html'
+import { Route as KeysyIndexRouteImport } from './routes/keysy/index'
+import { Route as KeysySlugRouteImport } from './routes/keysy/$slug'
+import { Route as UslugiIndexRouteImport } from './routes/uslugi/index'
+import { Route as UslugiSlugRouteImport } from './routes/uslugi/$slug'
+import { Route as IntegrationsSocialVkRouteImport } from './routes/integrations/social/vk'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SplatRoute = SplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R404Route = R404RouteImport.update({
+  id: '/404',
+  path: '/404',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Googled4275817b7b8a702DothtmlRoute =
+  Googled4275817b7b8a702DothtmlRouteImport.update({
+    id: '/googled4275817b7b8a702.html',
+    path: '/googled4275817b7b8a702.html',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Yandex_f3d45a2d7896cfddDothtmlRoute =
@@ -23,31 +53,126 @@ const Yandex_f3d45a2d7896cfddDothtmlRoute =
     path: '/yandex_f3d45a2d7896cfdd.html',
     getParentRoute: () => rootRouteImport,
   } as any)
+const KeysyIndexRoute = KeysyIndexRouteImport.update({
+  id: '/keysy/',
+  path: '/keysy/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KeysySlugRoute = KeysySlugRouteImport.update({
+  id: '/keysy/$slug',
+  path: '/keysy/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UslugiIndexRoute = UslugiIndexRouteImport.update({
+  id: '/uslugi/',
+  path: '/uslugi/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UslugiSlugRoute = UslugiSlugRouteImport.update({
+  id: '/uslugi/$slug',
+  path: '/uslugi/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IntegrationsSocialVkRoute = IntegrationsSocialVkRouteImport.update({
+  id: '/integrations/social/vk',
+  path: '/integrations/social/vk',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/404': typeof R404Route
+  '/googled4275817b7b8a702.html': typeof Googled4275817b7b8a702DothtmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/yandex_f3d45a2d7896cfdd.html': typeof Yandex_f3d45a2d7896cfddDothtmlRoute
+  '/keysy/$slug': typeof KeysySlugRoute
+  '/uslugi/$slug': typeof UslugiSlugRoute
+  '/keysy/': typeof KeysyIndexRoute
+  '/uslugi/': typeof UslugiIndexRoute
+  '/integrations/social/vk': typeof IntegrationsSocialVkRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/404': typeof R404Route
+  '/googled4275817b7b8a702.html': typeof Googled4275817b7b8a702DothtmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/yandex_f3d45a2d7896cfdd.html': typeof Yandex_f3d45a2d7896cfddDothtmlRoute
+  '/keysy/$slug': typeof KeysySlugRoute
+  '/uslugi/$slug': typeof UslugiSlugRoute
+  '/keysy': typeof KeysyIndexRoute
+  '/uslugi': typeof UslugiIndexRoute
+  '/integrations/social/vk': typeof IntegrationsSocialVkRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/404': typeof R404Route
+  '/googled4275817b7b8a702.html': typeof Googled4275817b7b8a702DothtmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/yandex_f3d45a2d7896cfdd.html': typeof Yandex_f3d45a2d7896cfddDothtmlRoute
+  '/keysy/$slug': typeof KeysySlugRoute
+  '/uslugi/$slug': typeof UslugiSlugRoute
+  '/keysy/': typeof KeysyIndexRoute
+  '/uslugi/': typeof UslugiIndexRoute
+  '/integrations/social/vk': typeof IntegrationsSocialVkRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/yandex_f3d45a2d7896cfdd.html'
+  fullPaths:
+    | '/'
+    | '/$'
+    | '/404'
+    | '/googled4275817b7b8a702.html'
+    | '/sitemap.xml'
+    | '/yandex_f3d45a2d7896cfdd.html'
+    | '/keysy/$slug'
+    | '/uslugi/$slug'
+    | '/keysy/'
+    | '/uslugi/'
+    | '/integrations/social/vk'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/yandex_f3d45a2d7896cfdd.html'
-  id: '__root__' | '/' | '/yandex_f3d45a2d7896cfdd.html'
+  to:
+    | '/'
+    | '/$'
+    | '/404'
+    | '/googled4275817b7b8a702.html'
+    | '/sitemap.xml'
+    | '/yandex_f3d45a2d7896cfdd.html'
+    | '/keysy/$slug'
+    | '/uslugi/$slug'
+    | '/keysy'
+    | '/uslugi'
+    | '/integrations/social/vk'
+  id:
+    | '__root__'
+    | '/'
+    | '/$'
+    | '/404'
+    | '/googled4275817b7b8a702.html'
+    | '/sitemap.xml'
+    | '/yandex_f3d45a2d7896cfdd.html'
+    | '/keysy/$slug'
+    | '/uslugi/$slug'
+    | '/keysy/'
+    | '/uslugi/'
+    | '/integrations/social/vk'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SplatRoute: typeof SplatRoute
+  R404Route: typeof R404Route
+  Googled4275817b7b8a702DothtmlRoute: typeof Googled4275817b7b8a702DothtmlRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   Yandex_f3d45a2d7896cfddDothtmlRoute: typeof Yandex_f3d45a2d7896cfddDothtmlRoute
+  KeysySlugRoute: typeof KeysySlugRoute
+  UslugiSlugRoute: typeof UslugiSlugRoute
+  KeysyIndexRoute: typeof KeysyIndexRoute
+  UslugiIndexRoute: typeof UslugiIndexRoute
+  IntegrationsSocialVkRoute: typeof IntegrationsSocialVkRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -59,6 +184,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$': {
+      id: '/$'
+      path: '/$'
+      fullPath: '/$'
+      preLoaderRoute: typeof SplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/404': {
+      id: '/404'
+      path: '/404'
+      fullPath: '/404'
+      preLoaderRoute: typeof R404RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/googled4275817b7b8a702.html': {
+      id: '/googled4275817b7b8a702.html'
+      path: '/googled4275817b7b8a702.html'
+      fullPath: '/googled4275817b7b8a702.html'
+      preLoaderRoute: typeof Googled4275817b7b8a702DothtmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/yandex_f3d45a2d7896cfdd.html': {
       id: '/yandex_f3d45a2d7896cfdd.html'
       path: '/yandex_f3d45a2d7896cfdd.html'
@@ -66,12 +219,56 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Yandex_f3d45a2d7896cfddDothtmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/keysy/': {
+      id: '/keysy/'
+      path: '/keysy'
+      fullPath: '/keysy/'
+      preLoaderRoute: typeof KeysyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/keysy/$slug': {
+      id: '/keysy/$slug'
+      path: '/keysy/$slug'
+      fullPath: '/keysy/$slug'
+      preLoaderRoute: typeof KeysySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uslugi/': {
+      id: '/uslugi/'
+      path: '/uslugi'
+      fullPath: '/uslugi/'
+      preLoaderRoute: typeof UslugiIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uslugi/$slug': {
+      id: '/uslugi/$slug'
+      path: '/uslugi/$slug'
+      fullPath: '/uslugi/$slug'
+      preLoaderRoute: typeof UslugiSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/integrations/social/vk': {
+      id: '/integrations/social/vk'
+      path: '/integrations/social/vk'
+      fullPath: '/integrations/social/vk'
+      preLoaderRoute: typeof IntegrationsSocialVkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SplatRoute: SplatRoute,
+  R404Route: R404Route,
+  Googled4275817b7b8a702DothtmlRoute: Googled4275817b7b8a702DothtmlRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   Yandex_f3d45a2d7896cfddDothtmlRoute: Yandex_f3d45a2d7896cfddDothtmlRoute,
+  KeysySlugRoute: KeysySlugRoute,
+  UslugiSlugRoute: UslugiSlugRoute,
+  KeysyIndexRoute: KeysyIndexRoute,
+  UslugiIndexRoute: UslugiIndexRoute,
+  IntegrationsSocialVkRoute: IntegrationsSocialVkRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,5 +1,3 @@
-import { site } from '~/content/site'
-
 const VOID = '#121316'
 const SIGNAL = '#f2a13a'
 const TRACK = 'rgba(242, 161, 58, 0.28)'
@@ -148,8 +146,6 @@ export function setTabProgress(progress: number) {
   if (key === lastKey) return
   lastKey = key
 
-  document.title = `${tape}  ${site.name}`
-
   if (!canvas) {
     canvas = document.createElement('canvas')
     canvas.width = 96
@@ -164,7 +160,6 @@ export function setTabProgress(progress: number) {
 
 export function resetTabProgress() {
   lastKey = ''
-  document.title = site.seo.title
   if (icon && originalHref) {
     icon.type = originalType || 'image/png'
     icon.href = originalHref

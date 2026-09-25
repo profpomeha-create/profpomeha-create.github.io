@@ -21,8 +21,10 @@ export default defineConfig({
       prerender: {
         enabled: true,
         crawlLinks: true,
+        filter: ({ path }) => path !== '/$' && !path.startsWith('/$'),
       },
       pages: [
+        { path: '/' },
         {
           path: '/yandex_f3d45a2d7896cfdd.html',
           prerender: {
@@ -30,6 +32,47 @@ export default defineConfig({
             outputPath: '/yandex_f3d45a2d7896cfdd.html',
           },
         },
+        {
+          path: '/googled4275817b7b8a702.html',
+          prerender: {
+            enabled: true,
+            outputPath: '/googled4275817b7b8a702.html',
+          },
+        },
+        {
+          path: '/sitemap.xml',
+          prerender: {
+            enabled: true,
+            outputPath: '/sitemap.xml',
+          },
+        },
+        {
+          path: '/404',
+          prerender: {
+            enabled: true,
+            outputPath: '/404.html',
+          },
+        },
+        {
+          path: '/integrations/social/vk',
+          prerender: {
+            enabled: true,
+            outputPath: '/integrations/social/vk/index.html',
+          },
+        },
+
+        { path: '/uslugi' },
+        { path: '/uslugi/infrastruktura' },
+        { path: '/uslugi/set' },
+        { path: '/uslugi/backend' },
+        { path: '/uslugi/pochta' },
+        { path: '/uslugi/ai' },
+        { path: '/keysy' },
+        { path: '/keysy/set' },
+        { path: '/keysy/uchet' },
+        { path: '/keysy/pochta' },
+        { path: '/keysy/server' },
+        { path: '/keysy/ai' },
       ],
     }),
     viteReact(),
