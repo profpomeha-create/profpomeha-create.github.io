@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link } from '@tanstack/react-router'
-import { Magnetic } from '~/components/Magnetic'
 
 const STORAGE_KEY = 'aaa_cookie_consent_v1'
 
@@ -44,7 +43,7 @@ export function CookieBanner() {
           type="button"
           onClick={accept}
           aria-label="Закрыть уведомление"
-          className="flex h-6 w-6 items-center justify-center text-muted hover:text-signal transition-colors font-mono text-xs"
+          className="flex h-7 w-7 items-center justify-center text-muted hover:text-signal transition-colors font-mono text-sm cursor-pointer"
         >
           ✕
         </button>
@@ -70,16 +69,15 @@ export function CookieBanner() {
             Условия Метрики ↗
           </a>
         </div>
-        <Magnetic
-          as="button"
+        <button
           type="button"
           onClick={accept}
-          label="Принять"
-          className="cookie-banner-btn"
+          data-cursor-label="Принять"
+          className="cookie-banner-btn cursor-pointer"
         >
           <span className="led led-signal relative z-[1]" />
           <span className="relative z-[1]">Принять</span>
-        </Magnetic>
+        </button>
       </div>
     </aside>
   )

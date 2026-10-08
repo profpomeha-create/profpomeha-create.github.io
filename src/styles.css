@@ -352,6 +352,7 @@ button {
 
 .cursor-root {
   pointer-events: none;
+  z-index: 10000 !important;
 }
 
 .cursor-reticle {

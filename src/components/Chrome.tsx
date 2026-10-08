@@ -137,7 +137,7 @@ export function CustomCursor() {
   return (
     <div
       ref={root}
-      className="cursor-root pointer-events-none fixed inset-0 z-[60] hidden md:block"
+      className="cursor-root pointer-events-none fixed inset-0 z-[10000] hidden md:block"
       aria-hidden="true"
     >
       <div ref={reticle} className="cursor-reticle">

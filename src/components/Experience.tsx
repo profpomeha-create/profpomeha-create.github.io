@@ -3,7 +3,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
 import { useEffect, useRef, useState } from 'react'
-import { CustomCursor, ScrollProgress } from '~/components/Chrome'
+import { ScrollProgress } from '~/components/Chrome'
 import { Preloader } from '~/components/Preloader'
 import { SceneLayer } from '~/components/SceneLayer'
 import { SectionNav } from '~/components/SectionNav'
@@ -258,7 +258,6 @@ export function Experience() {
       <div className="blueprint" aria-hidden="true" />
       <div className="grain" aria-hidden="true" />
       <ScrollProgress />
-      <CustomCursor />
       <SectionNav />
       {!ready ? <Preloader reduced={reduced} onDone={() => setReady(true)} /> : null}
       <main className="relative z-[2]">

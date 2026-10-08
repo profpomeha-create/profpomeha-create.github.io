@@ -1,7 +1,7 @@
 import { useEffect, type ReactNode } from 'react'
 import { Link } from '@tanstack/react-router'
 import { BrandMark } from '~/components/Brand'
-import { CustomCursor, ScrollProgress } from '~/components/Chrome'
+import { ScrollProgress } from '~/components/Chrome'
 import { Magnetic } from '~/components/Magnetic'
 import { services } from '~/content/services'
 import { products, site } from '~/content/site'
@@ -29,7 +29,6 @@ export function PageShell({
       <div className="blueprint" aria-hidden="true" />
       <div className="grain" aria-hidden="true" />
       <ScrollProgress brand={false} />
-      <CustomCursor />
       <header className="page-bar">
         <Magnetic as={Link} to="/" label={site.name} className="flex items-center gap-2.5">
           <BrandMark className="h-6 w-auto" />
