@@ -70,12 +70,30 @@ def main() -> None:
     mark = crop_alpha(raw.crop((0, 0, raw.width, 640)), 8)
     save_webp(mark, ASSETS / "logo-mark.webp")
 
-    icon = Image.new("RGBA", (96, 96), (18, 19, 22, 255))
-    fitted = mark.copy()
-    fitted.thumbnail((72, 72), Image.Resampling.LANCZOS)
-    icon.paste(fitted, ((96 - fitted.width) // 2, (96 - fitted.height) // 2), fitted)
-    icon.save(PUBLIC / "favicon.png", "PNG", optimize=True)
-    print(f"favicon.png: {(PUBLIC / 'favicon.png').stat().st_size / 1024:.1f} KB")
+    def make_icon(size: int, inner_ratio: float = 0.76) -> Image.Image:
+        base = Image.new("RGBA", (size, size), (18, 19, 22, 255))
+        target = int(size * inner_ratio)
+        f = mark.copy()
+        f.thumbnail((target, target), Image.Resampling.LANCZOS)
+        base.paste(f, ((size - f.width) // 2, (size - f.height) // 2), f)
+        return base
+
+    ico_120 = make_icon(120)
+    ico_120.save(PUBLIC / "favicon-120x120.png", "PNG", optimize=True)
+    ico_120.save(PUBLIC / "favicon.png", "PNG", optimize=True)
+
+    ico_192 = make_icon(192)
+    ico_192.save(PUBLIC / "favicon-192x192.png", "PNG", optimize=True)
+
+    ico_180 = make_icon(180)
+    ico_180.save(PUBLIC / "apple-touch-icon.png", "PNG", optimize=True)
+
+    ico_120.save(
+        PUBLIC / "favicon.ico",
+        format="ICO",
+        sizes=[(16, 16), (32, 32), (48, 48), (120, 120)],
+    )
+    print("Generated all favicon variants: 120x120, 192x192, 180x180, ICO, and favicon.png")
 
 
 if __name__ == "__main__":
