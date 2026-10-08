@@ -15,6 +15,7 @@ export const expertiseToService: Record<string, string> = {
 export function catalogPaths() {
   return [
     '/',
+    '/privacy',
     '/uslugi',
     ...services.map((item) => `/uslugi/${item.slug}`),
     '/keysy',

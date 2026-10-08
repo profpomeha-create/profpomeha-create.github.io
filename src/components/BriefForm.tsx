@@ -176,6 +176,22 @@ export function BriefForm({ defaultNeed = '' }: { defaultNeed?: BriefNeedId | ''
         <span className="led led-signal relative z-[1]" />
         <span className="relative z-[1]">{contactCopy.submit}</span>
       </Magnetic>
+      <p className="mt-4 text-[length:var(--step-000)] text-faint leading-relaxed max-w-xl">
+        Отправляя бриф, вы подтверждаете согласие на обработку данных в соответствии с{' '}
+        <a href="/privacy" className="text-muted underline hover:text-signal transition-colors">
+          Политикой конфиденциальности
+        </a>{' '}
+        и{' '}
+        <a
+          href="https://yandex.ru/legal/metrica_termsofuse/ru/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-muted underline hover:text-signal transition-colors"
+        >
+          Условиями сервиса «Яндекс Метрика»
+        </a>
+        .
+      </p>
     </form>
   )
 }

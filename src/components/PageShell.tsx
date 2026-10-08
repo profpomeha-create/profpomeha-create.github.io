@@ -176,6 +176,23 @@ export function PageShell({
             </div>
           </div>
         </div>
+
+        <div className="mt-8 border-t border-[var(--hairline)] pt-6 flex flex-wrap items-center justify-between gap-4 text-[length:var(--step-000)] text-faint">
+          <p>© {new Date().getFullYear()} {site.name}. Все контуры в работе.</p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <Link to="/privacy" className="hover:text-signal transition-colors">
+              Политика конфиденциальности и Cookies
+            </Link>
+            <a
+              href="https://yandex.ru/legal/metrica_termsofuse/ru/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-signal transition-colors"
+            >
+              Условия сервиса «Яндекс Метрика» ↗
+            </a>
+          </div>
+        </div>
       </footer>
     </div>
   )

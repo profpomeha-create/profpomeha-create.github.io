@@ -13,6 +13,7 @@ import {
   YandexMetrikaNoscript,
   YandexMetrikaTracker,
 } from '~/components/YandexMetrika'
+import { CookieBanner } from '~/components/CookieBanner'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -46,6 +47,7 @@ function RootComponent() {
     <RootDocument>
       <YandexMetrikaTracker />
       <Outlet />
+      <CookieBanner />
     </RootDocument>
   )
 }

@@ -60,6 +60,7 @@ export default defineConfig({
             outputPath: '/integrations/social/vk/index.html',
           },
         },
+        { path: '/privacy' },
 
         { path: '/uslugi' },
         { path: '/uslugi/infrastruktura' },

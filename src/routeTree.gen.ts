@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as R404RouteImport } from './routes/404'
 import { Route as Googled4275817b7b8a702DothtmlRouteImport } from './routes/googled4275817b7b8a702[.]html'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as Yandex_f3d45a2d7896cfddDothtmlRouteImport } from './routes/yandex_f3d45a2d7896cfdd[.]html'
 import { Route as KeysyIndexRouteImport } from './routes/keysy/index'
@@ -42,6 +43,11 @@ const Googled4275817b7b8a702DothtmlRoute =
     path: '/googled4275817b7b8a702.html',
     getParentRoute: () => rootRouteImport,
   } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -84,6 +90,7 @@ export interface FileRoutesByFullPath {
   '/$': typeof SplatRoute
   '/404': typeof R404Route
   '/googled4275817b7b8a702.html': typeof Googled4275817b7b8a702DothtmlRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/yandex_f3d45a2d7896cfdd.html': typeof Yandex_f3d45a2d7896cfddDothtmlRoute
   '/keysy/$slug': typeof KeysySlugRoute
@@ -97,6 +104,7 @@ export interface FileRoutesByTo {
   '/$': typeof SplatRoute
   '/404': typeof R404Route
   '/googled4275817b7b8a702.html': typeof Googled4275817b7b8a702DothtmlRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/yandex_f3d45a2d7896cfdd.html': typeof Yandex_f3d45a2d7896cfddDothtmlRoute
   '/keysy/$slug': typeof KeysySlugRoute
@@ -111,6 +119,7 @@ export interface FileRoutesById {
   '/$': typeof SplatRoute
   '/404': typeof R404Route
   '/googled4275817b7b8a702.html': typeof Googled4275817b7b8a702DothtmlRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/yandex_f3d45a2d7896cfdd.html': typeof Yandex_f3d45a2d7896cfddDothtmlRoute
   '/keysy/$slug': typeof KeysySlugRoute
@@ -126,6 +135,7 @@ export interface FileRouteTypes {
     | '/$'
     | '/404'
     | '/googled4275817b7b8a702.html'
+    | '/privacy'
     | '/sitemap.xml'
     | '/yandex_f3d45a2d7896cfdd.html'
     | '/keysy/$slug'
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
     | '/$'
     | '/404'
     | '/googled4275817b7b8a702.html'
+    | '/privacy'
     | '/sitemap.xml'
     | '/yandex_f3d45a2d7896cfdd.html'
     | '/keysy/$slug'
@@ -152,6 +163,7 @@ export interface FileRouteTypes {
     | '/$'
     | '/404'
     | '/googled4275817b7b8a702.html'
+    | '/privacy'
     | '/sitemap.xml'
     | '/yandex_f3d45a2d7896cfdd.html'
     | '/keysy/$slug'
@@ -166,6 +178,7 @@ export interface RootRouteChildren {
   SplatRoute: typeof SplatRoute
   R404Route: typeof R404Route
   Googled4275817b7b8a702DothtmlRoute: typeof Googled4275817b7b8a702DothtmlRoute
+  PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   Yandex_f3d45a2d7896cfddDothtmlRoute: typeof Yandex_f3d45a2d7896cfddDothtmlRoute
   KeysySlugRoute: typeof KeysySlugRoute
@@ -203,6 +216,13 @@ declare module '@tanstack/react-router' {
       path: '/googled4275817b7b8a702.html'
       fullPath: '/googled4275817b7b8a702.html'
       preLoaderRoute: typeof Googled4275817b7b8a702DothtmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -262,6 +282,7 @@ const rootRouteChildren: RootRouteChildren = {
   SplatRoute: SplatRoute,
   R404Route: R404Route,
   Googled4275817b7b8a702DothtmlRoute: Googled4275817b7b8a702DothtmlRoute,
+  PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   Yandex_f3d45a2d7896cfddDothtmlRoute: Yandex_f3d45a2d7896cfddDothtmlRoute,
   KeysySlugRoute: KeysySlugRoute,
