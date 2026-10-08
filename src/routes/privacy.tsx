@@ -24,7 +24,7 @@ export const Route = createFileRoute('/privacy')({
 function PrivacyPage() {
   return (
     <PageShell crumbs={[{ label: site.name, to: '/' }, { label: 'конфиденциальность' }]} cta={false}>
-      <article className="chapter-fit py-12 md:py-16 max-w-4xl">
+      <article className="chapter-fit page-hero pb-16 md:pb-24 max-w-4xl">
         <header className="bay-head mb-8">
           <span className="tag tag-signal">00</span>
           <span className="tag">регламент · 152-фз · метрика</span>

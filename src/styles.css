@@ -853,7 +853,7 @@ button {
 }
 
 .page-hero {
-  padding-top: clamp(7.25rem, 16vw, 9.5rem);
+  padding-top: clamp(8rem, 16vw, 9.75rem);
 }
 
 .page-bar {

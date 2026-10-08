@@ -64,7 +64,7 @@ export function PageShell({
         {crumbs.length ? (
           <nav
             aria-label="Навигация по разделам"
-            className="absolute inset-x-0 top-0 z-10 flex flex-wrap items-center gap-2 px-[var(--gutter)] pt-[clamp(4.75rem,11vw,6.25rem)]"
+            className="absolute inset-x-0 top-0 z-10 flex flex-wrap items-center gap-2 px-[var(--gutter)] pt-[clamp(5rem,11vw,6.25rem)]"
           >
             {crumbs.map((crumb, i) => (
               <span key={`${crumb.label}-${i}`} className="flex items-center gap-2">
