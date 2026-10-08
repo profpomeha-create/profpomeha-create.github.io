@@ -11,9 +11,7 @@ export function CookieBanner() {
     try {
       const consent = localStorage.getItem(STORAGE_KEY)
       if (!consent) {
-        // Small delay to prevent layout flicker on initial paint
-        const timer = setTimeout(() => setVisible(true), 800)
-        return () => clearTimeout(timer)
+        setVisible(true)
       }
     } catch {
       // localStorage may fail in restricted iframes
@@ -34,7 +32,8 @@ export function CookieBanner() {
   return (
     <aside
       aria-label="Уведомление об использовании cookie и аналитики"
-      className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 z-50 max-w-md panel panel-live p-4 sm:p-5 shadow-2xl backdrop-blur-md border border-[var(--hairline-hi)] animate-fade-in"
+      role="region"
+      className="cookie-banner panel panel-live p-4 sm:p-5 backdrop-blur-md border border-[var(--hairline-hi)]"
     >
       <div className="flex items-start justify-between gap-3 mb-2.5">
         <div className="flex items-center gap-2">
@@ -45,7 +44,7 @@ export function CookieBanner() {
           type="button"
           onClick={accept}
           aria-label="Закрыть уведомление"
-          className="text-faint hover:text-signal text-sm px-1 transition-colors"
+          className="flex h-6 w-6 items-center justify-center text-muted hover:text-signal transition-colors font-mono text-xs"
         >
           ✕
         </button>
@@ -57,7 +56,7 @@ export function CookieBanner() {
         статистики и бесперебойной работы интерфейса.
       </p>
 
-      <div className="flex flex-wrap items-center justify-between gap-3 pt-1 border-t border-[var(--hairline)]">
+      <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-[var(--hairline)]">
         <div className="flex flex-wrap items-center gap-x-3 text-[11px] text-faint">
           <Link to="/privacy" className="underline hover:text-signal transition-colors">
             Политика конфиденциальности
@@ -76,7 +75,7 @@ export function CookieBanner() {
           type="button"
           onClick={accept}
           label="Принять"
-          className="link-plate link-plate-fill mono text-[11px] py-1 px-3"
+          className="cookie-banner-btn"
         >
           <span className="led led-signal relative z-[1]" />
           <span className="relative z-[1]">Принять</span>
