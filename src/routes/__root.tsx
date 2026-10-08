@@ -8,6 +8,11 @@ import {
 import appCss from '~/styles.css?url'
 import { NotFoundPage } from '~/components/PageShell'
 import { site } from '~/content/site'
+import {
+  YandexMetrikaScript,
+  YandexMetrikaNoscript,
+  YandexMetrikaTracker,
+} from '~/components/YandexMetrika'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -37,6 +42,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
+      <YandexMetrikaTracker />
       <Outlet />
     </RootDocument>
   )
@@ -47,8 +53,10 @@ function RootDocument({ children }: { children: ReactNode }) {
     <html lang="ru">
       <head>
         <HeadContent />
+        <YandexMetrikaScript />
       </head>
       <body>
+        <YandexMetrikaNoscript />
         {children}
         <Scripts />
       </body>
