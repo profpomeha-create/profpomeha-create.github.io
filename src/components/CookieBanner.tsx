@@ -52,7 +52,7 @@ export function CookieBanner() {
 
       <p className="text-[length:var(--step-000)] text-muted leading-relaxed mb-3">
         Мы используем файлы cookie и сервис{' '}
-        <strong className="text-[var(--ink)]">Яндекс Метрика</strong> (счётчик 113563863) для сбора обезличенной
+        <strong className="text-[var(--ink)]">Яндекс Метрика</strong> для сбора обезличенной
         статистики и бесперебойной работы интерфейса.
       </p>
 
